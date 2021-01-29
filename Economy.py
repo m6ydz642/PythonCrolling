@@ -20,6 +20,20 @@ for list in soup.select("div .article"):
     title = list.select_one("h3 > a").text
     content = list.select_one("p").text
 
+    titlechange = title.replace("'", "'") #뉴스 안에 '같은 문자 공백처리
+    contentchange = content.replace("'", "")
+    title.replace('"', '')  # 뉴스 안에 '같은 문자 공백처리
+    content.replace('"', '')
+
+    title.replace("'", "")
+    content.replace("'", "")
+
+    content.replace('‘', '')
+    title.replace('’', '')  # 뉴스 안에 '같은 문자 공백처리
+    # ‘’ 이거땜에 계속 삽질했네 ㅡ.ㅡ '랑 다름
+    title.strip('"\'')
+    content.strip('"\'')
+
     insertDB = "insert into board (userid, subject, content) values ('기자양반',"
     insertTitle = " ' " + title + " ', "
     insertcontent = " ' " + content + " ' ); "
